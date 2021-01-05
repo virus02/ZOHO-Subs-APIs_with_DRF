@@ -1,17 +1,17 @@
 from rest_framework import status
 from rest_framework.response import Response
-from zoho_api.constants import ZOHO_GENERATE_TOKEN, ZOHO_REFRESH_TOKEN, ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET, ZOHO_REDIRECT_URI, ZOHO_ORG_ID
+from .constants import ZOHO_GENERATE_TOKEN, ZOHO_REFRESH_TOKEN, ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET, ZOHO_REDIRECT_URI, ZOHO_ORG_ID
 import requests, json
 from rest_framework.decorators import api_view
 
 @api_view(['POST'])
 def get_auth_code(request):
     if request.method == 'POST':
-      code = request.POST.get('code')
-      request.session['config'] = {}
-      request.session['config']['code'] = code 
-      request.session['config']['orgid'] = ZOHO_ORG_ID
-      return Response({'status': 'success'}, status=status.HTTP_200_OK)
+        code = request.POST.get('code')
+        request.session['config'] = {}
+        request.session['config']['code'] = code 
+        request.session['config']['orgid'] = ZOHO_ORG_ID
+        return Response({'status': 'success'}, status=status.HTTP_200_OK)
     return Response({'status': 'Method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED) 
 
 @api_view(['POST'])

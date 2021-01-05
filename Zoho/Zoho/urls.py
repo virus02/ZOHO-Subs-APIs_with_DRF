@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from helpers.auth import get_auth_code, storeauth, refreshauth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/getauthcode', get_auth_code),
+    path('api/storeauth', storeauth),
+    path('api/refreshauth', refreshauth),
 
     #customer
     path('api/', include('customers.urls')),
